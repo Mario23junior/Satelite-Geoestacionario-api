@@ -1,5 +1,7 @@
 package com.projeto.satellite.GeostationarySatellite.Service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,15 @@ public class ServiceSatelite {
 		Satelite findNameDiretriz = sateliteRepository.findBynomeDeDiretrizIgnoreCaseContaining(satelite.getNomeDeDiretriz());
 		if(findNameDiretriz != null && findNameDiretriz.getId() != satelite.getId()) {
 			throw new ValidatingDuplicateValues(String.format(" O Satelite %s já está cadastrado no banco de dados", satelite.getNomeComun()));
+		}
+	}
+	
+	public ResponseEntity<SateliteDTO> listSateliteId(Long id) {
+		Optional<Satelite> listId = sateliteRepository.findById(id);
+		if(listId.isPresent()) {
+			return ResponseEntity.ok(modelMapper.map(listId.get(), SateliteDTO.class));
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 }
