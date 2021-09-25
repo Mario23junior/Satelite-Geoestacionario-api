@@ -31,6 +31,7 @@ public class ServiceSatelite {
 	}
 	
 	public Satelite saveBody (Satelite satelite) {
+		ExceptionDuplicateDataSatelite(satelite);
 		return sateliteRepository.save(satelite);
 	}
 	
