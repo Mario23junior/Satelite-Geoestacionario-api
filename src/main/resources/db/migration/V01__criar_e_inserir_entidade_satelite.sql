@@ -7,5 +7,5 @@ CREATE TABLE `Satelite` (
     `veiculo` varchar(80)
    );
   
-INSERT INTO Satelite (id,nome_De_Diretriz,nome_Comun,fabricante,veiculo) VALUES 
-(1,'11056A','INTELSAT 18 (IS-18)','Orbital Sciences Corporation', 'Zenit-3SL');
+INSERT INTO Satelite (nome_De_Diretriz,nome_Comun,fabricante,veiculo) VALUES 
+('11056A','INTELSAT 18 (IS-18)','Orbital Sciences Corporation', 'Zenit-3SL');
