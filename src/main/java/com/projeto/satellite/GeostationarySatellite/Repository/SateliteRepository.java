@@ -7,5 +7,6 @@ import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
 
 @Repository
 public interface SateliteRepository extends JpaRepository<Satelite, Long>{
-
+   
+	Satelite findBynomeDeDiretrizIgnoreCaseContaining (String nomeDeDiretriz);
 }
