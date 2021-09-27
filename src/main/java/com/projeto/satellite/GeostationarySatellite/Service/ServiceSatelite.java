@@ -86,7 +86,18 @@ public class ServiceSatelite {
  		   return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
  	   }
- 	}	
+ 	}
+ 	
+ 	public ResponseEntity<SateliteDTO> deleteSatelite(Long id) {
+ 		Optional<Satelite> findId = sateliteRepository.findById(id);
+ 		if(findId.isPresent()) {
+ 			sateliteRepository.delete(findId.get());
+ 			return new ResponseEntity<>(HttpStatus.OK);
+ 		} else {
+ 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+ 		}
+ 		
+ 	}
 }
 
 

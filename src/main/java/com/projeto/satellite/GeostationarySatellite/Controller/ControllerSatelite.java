@@ -3,6 +3,7 @@ package com.projeto.satellite.GeostationarySatellite.Controller;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,14 +49,13 @@ public class ControllerSatelite {
 	@PutMapping("/{id}")
 	public ResponseEntity<SateliteDTO> updateSatelite(@PathVariable Long id, @RequestBody Satelite satelite) {
 		return serviceSatelite.updateSatelite(id, satelite);
+	}	
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<SateliteDTO> deleteSatelite(@PathVariable Long id) {
+		return serviceSatelite.deleteSatelite(id);
 	}
-	
-	
 }
-
-
-
-
 
 
 
