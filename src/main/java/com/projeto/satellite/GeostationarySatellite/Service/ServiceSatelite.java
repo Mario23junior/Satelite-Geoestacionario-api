@@ -68,9 +68,40 @@ public class ServiceSatelite {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
-	
-	
+ 	
+ 	
+ 	public ResponseEntity<SateliteDTO> updateSatelite (Long id , Satelite satelite) {
+ 	   ExceptionDuplicateDataSatelite(satelite);
+ 	   Optional<Satelite> listId = sateliteRepository.findById(id);
+ 	   if(listId.isPresent()) {
+ 		   Satelite satl = listId.get();
+  		   satl.setNomeDeDiretriz(satelite.getNomeDeDiretriz());
+ 		   satl.setNomeComun(satelite.getNomeComun());
+ 		   satl.setFabricante(satelite.getFabricante());
+ 		   satl.setVeiculo(satelite.getVeiculo());
+ 		   
+ 		   sateliteRepository.save(satl);
+ 		   return ResponseEntity.ok(modelMapper.map(satl, SateliteDTO.class));
+ 	   } else {
+ 		   return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+ 	   }
+ 	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
