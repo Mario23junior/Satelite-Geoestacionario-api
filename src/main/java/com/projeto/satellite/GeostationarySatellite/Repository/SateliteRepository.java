@@ -13,4 +13,6 @@ public interface SateliteRepository extends JpaRepository<Satelite, Long>{
 	Satelite findBynomeDeDiretrizIgnoreCaseContaining (String nomeDeDiretriz);
 
 	Optional<Satelite> findBynomeComunIgnoreCaseContaining(String nomeComun);
+	
+	Optional<Satelite> findByNomeDeDiretrizIgnoreCaseContaining(String nomeDeDiretriz);
 }

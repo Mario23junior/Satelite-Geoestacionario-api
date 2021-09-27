@@ -37,6 +37,13 @@ public class ControllerSatelite {
 	public ResponseEntity<SateliteDTO> listNameComun(@PathVariable @Valid String nomeComun) {
 		 return serviceSatelite.findByNameCommun(nomeComun);
 	}
+	
+	@GetMapping("nomeDiretriz/{nomeDeDiretriz}")
+	public ResponseEntity<SateliteDTO> listNameDeDiretriz(@PathVariable @Valid String nomeDeDiretriz) {
+		 return serviceSatelite.findByNomeDeDiretriz(nomeDeDiretriz);
+	}
+	
+	
 }
 
 
