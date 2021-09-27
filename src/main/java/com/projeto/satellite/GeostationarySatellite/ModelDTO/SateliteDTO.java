@@ -6,6 +6,10 @@ public class SateliteDTO {
 	private String nomeComun;
 	private String fabricante;
 	private String veiculo;
+	
+	public SateliteDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getNomeDeDiretriz() {
 		return nomeDeDiretriz;

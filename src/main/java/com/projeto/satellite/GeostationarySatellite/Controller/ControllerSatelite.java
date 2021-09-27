@@ -1,5 +1,7 @@
 package com.projeto.satellite.GeostationarySatellite.Controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ public class ControllerSatelite {
 	}
 
 	@PostMapping
-	public ResponseEntity<SateliteDTO> save(@RequestBody SateliteDTO sateliteDto) {
+	public ResponseEntity<SateliteDTO> save(@RequestBody @Valid SateliteDTO sateliteDto) {
 		return serviceSatelite.saveSatelite(sateliteDto);
 	}
 
@@ -30,4 +32,26 @@ public class ControllerSatelite {
 	public ResponseEntity<SateliteDTO> list(@PathVariable Long id) {
 		return serviceSatelite.listSateliteId(id);
 	}
+	
+	@GetMapping("nomeIndentification/{nomeComun}")
+	public ResponseEntity<SateliteDTO> listNameComun(@PathVariable @Valid String nomeComun) {
+		 return serviceSatelite.findByNameCommun(nomeComun);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
