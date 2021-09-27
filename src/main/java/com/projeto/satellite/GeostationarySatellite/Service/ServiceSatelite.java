@@ -50,4 +50,18 @@ public class ServiceSatelite {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	// TODO Corrigir falha de exibir informações por nome
+	public ResponseEntity<SateliteDTO> findByNameCommun(String nomeComun) {
+		Optional<Satelite> listNomeIndenti = sateliteRepository.findBynomeComunIgnoreCaseContaining(nomeComun);
+		if(listNomeIndenti.isPresent()) {
+			return ResponseEntity.ok(modelMapper.map(listNomeIndenti.get(), SateliteDTO.class));
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	
 }
+

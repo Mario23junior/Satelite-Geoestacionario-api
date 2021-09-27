@@ -23,6 +23,7 @@ public class ExceptionHandlingErro {
 				request.getDescription(false));
 		return erroReturn;
 	}
+
 	
 	 @ExceptionHandler(Exception.class)
 	 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
