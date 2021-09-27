@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.projeto.satellite.GeostationarySatellite.Exceptions.ReturnMessageWhenNoSavedIdFound;
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ValidatingDuplicateValues;
 import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
 import com.projeto.satellite.GeostationarySatellite.ModelDTO.SateliteDTO;
@@ -47,8 +48,8 @@ public class ServiceSatelite {
 		if(listId.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listId.get(), SateliteDTO.class));
 		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+ 			throw new ReturnMessageWhenNoSavedIdFound(String.format(" O id %s Não existe em nosso cadastro",id));
+ 		}
 	}
 	
  	public ResponseEntity<SateliteDTO> findByNameCommun(String nomeComun) {
@@ -56,7 +57,7 @@ public class ServiceSatelite {
 		if(listNomeIndenti.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listNomeIndenti.get(), SateliteDTO.class));
 		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+ 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O %s não econtrado em nossa base de dados",nomeComun));
 		}
 	}
  	
@@ -65,7 +66,7 @@ public class ServiceSatelite {
 		if(listNomeIndenti.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listNomeIndenti.get(), SateliteDTO.class));
 		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+ 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O Nome %s não econtrado por favor insira um valor valido",nomeDeDiretriz));
 		}
 	}
  	
@@ -83,8 +84,7 @@ public class ServiceSatelite {
  		   sateliteRepository.save(satl);
  		   return ResponseEntity.ok(modelMapper.map(satl, SateliteDTO.class));
  	   } else {
- 		   return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("O erro ao atualizar informações"));
  	   }
  	}
  	
@@ -94,7 +94,7 @@ public class ServiceSatelite {
  			sateliteRepository.delete(findId.get());
  			return new ResponseEntity<>(HttpStatus.OK);
  		} else {
- 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Registro de id %s não foi encontrado na base para ser deletado "));
  		}
  		
  	}
