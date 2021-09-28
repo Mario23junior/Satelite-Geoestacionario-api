@@ -8,4 +8,6 @@ import com.projeto.satellite.GeostationarySatellite.Model.Geolocalizacao;
 @Repository
 public interface GeolocalizacaoRepository extends JpaRepository<Geolocalizacao, Long>{
 
+	Geolocalizacao findByOrbitaIgnoreCaseContaining(String Orbita);
+
 }
