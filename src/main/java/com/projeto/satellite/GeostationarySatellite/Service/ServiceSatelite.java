@@ -57,7 +57,7 @@ public class ServiceSatelite {
 		if(listNomeIndenti.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listNomeIndenti.get(), SateliteDTO.class));
 		} else {
- 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O %s não econtrado em nossa base de dados",nomeComun));
+ 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O %s não foi econtrado em nossa base de dados",nomeComun));
 		}
 	}
  	
@@ -99,20 +99,3 @@ public class ServiceSatelite {
  		
  	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
