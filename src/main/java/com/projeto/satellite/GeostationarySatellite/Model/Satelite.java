@@ -16,8 +16,7 @@ public class Satelite {
 	private String fabricante;
 	private String veiculo;
 
-	
-	
+
 	public Long getId() {
 		return id;
 	}

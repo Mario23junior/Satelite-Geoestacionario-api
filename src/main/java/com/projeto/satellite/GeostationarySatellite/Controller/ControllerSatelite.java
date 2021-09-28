@@ -56,16 +56,3 @@ public class ControllerSatelite {
 		return serviceSatelite.deleteSatelite(id);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
