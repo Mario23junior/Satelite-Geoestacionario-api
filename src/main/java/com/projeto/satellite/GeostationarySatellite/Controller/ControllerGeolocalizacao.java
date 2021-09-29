@@ -30,4 +30,16 @@ public class ControllerGeolocalizacao {
 	public ResponseEntity<GeolocalizacaoDTO> listId(@PathVariable Long id) {
 		return geolocalizacaoService.listGeo(id);
 	}
+	
+	@GetMapping("orbit/{Orbita}")
+	public ResponseEntity<GeolocalizacaoDTO> listGeoOrbit(@PathVariable String Orbita) {
+		return geolocalizacaoService.listGeoOrbita(Orbita);
+	}
 }
+
+
+
+
+
+
+

@@ -51,6 +51,16 @@ public class ServiceGeolocalizacao {
  			throw new ReturnMessageWhenNoSavedIdFound(String.format("id de indentificação %s não existe em nosso cadastro",id));
 		}
 	}
+	
+	
+	public ResponseEntity<GeolocalizacaoDTO> listGeoOrbita(String orbita) {
+		Optional<Geolocalizacao> listOrbita = geoRepository.findByorbitaIgnoreCaseContaining(orbita);
+		if(listOrbita.isPresent()) {
+			return ResponseEntity.ok(modelmapper.map(listOrbita.get(), GeolocalizacaoDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Por favor a orbita %s não esta cadastrada na base",orbita));
+		}
+	}
 }
 
 
