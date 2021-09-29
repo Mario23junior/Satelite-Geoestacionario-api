@@ -61,6 +61,23 @@ public class ServiceGeolocalizacao {
 			throw new ReturnMessageWhenNoSavedIdFound(String.format("Por favor a orbita %s não esta cadastrada na base",orbita));
 		}
 	}
+	
+	public ResponseEntity<GeolocalizacaoDTO> updateGeo(Long id, Geolocalizacao geolocali) {
+		ExceptionDuplicateDataGeolocalizacao(geolocali);
+		Optional<Geolocalizacao> findGeoId = geoRepository.findById(id);
+		if(findGeoId.isPresent()) {
+			Geolocalizacao geo = findGeoId.get();
+			geo.setOrbita(geolocali.getOrbita());
+			geo.setPosicaoEmOrbita(geolocali.getPosicaoEmOrbita());
+			geo.setLocalizacaoOrbital(geolocali.getLocalizacaoOrbital());
+			geo.setCobertura(geolocali.getCobertura());
+			
+			geoRepository.save(geo);
+			return ResponseEntity.ok(modelmapper.map(geo, GeolocalizacaoDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("O erro ao atualizar informações de geolocalização"));
+		}
+	}
 }
 
 
