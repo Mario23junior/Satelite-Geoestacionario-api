@@ -78,6 +78,16 @@ public class ServiceGeolocalizacao {
 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O erro ao atualizar informações de geolocalização"));
 		}
 	}
+	
+	public ResponseEntity<GeolocalizacaoDTO> deletarGeolocalizao(Long id) {
+		Optional<Geolocalizacao> findId = geoRepository.findById(id);
+		if(findId.isPresent()) {
+			geoRepository.delete(findId.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Por favor este id %s já foi cadastrado no banco de dados",id));
+		}
+	}
 }
 
 

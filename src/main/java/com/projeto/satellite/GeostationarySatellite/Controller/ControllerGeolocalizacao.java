@@ -1,6 +1,7 @@
 package com.projeto.satellite.GeostationarySatellite.Controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,11 @@ public class ControllerGeolocalizacao {
 	@PutMapping("/{id}")
 	public ResponseEntity<GeolocalizacaoDTO> updateGeolocalizao(@PathVariable Long id, @RequestBody Geolocalizacao geoloc) {
 		return geolocalizacaoService.updateGeo(id, geoloc);
+	}
+	
+	@DeleteMapping("{id}")
+	public ResponseEntity<GeolocalizacaoDTO> deleteGeolo(@PathVariable Long id) {
+	    return geolocalizacaoService.deletarGeolocalizao(id);
 	}
 }
 
