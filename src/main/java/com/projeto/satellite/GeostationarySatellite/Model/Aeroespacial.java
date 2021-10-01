@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Aeroespacial {
 
@@ -15,6 +17,8 @@ public class Aeroespacial {
 	private Long id;
 	private Double peso;
 	private String vidaUtil;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date lancamento;
 	private String operador;
 
@@ -57,5 +61,20 @@ public class Aeroespacial {
 	public void setOperador(String operador) {
 		this.operador = operador;
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

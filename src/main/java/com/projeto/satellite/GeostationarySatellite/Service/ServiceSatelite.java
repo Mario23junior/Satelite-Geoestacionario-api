@@ -70,7 +70,6 @@ public class ServiceSatelite {
 		}
 	}
  	
- 	
  	public ResponseEntity<SateliteDTO> updateSatelite (Long id , Satelite satelite) {
  	   ExceptionDuplicateDataSatelite(satelite);
  	   Optional<Satelite> listId = sateliteRepository.findById(id);

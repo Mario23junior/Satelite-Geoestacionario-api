@@ -2,10 +2,14 @@ package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AeroespacialDTO {
    
 	private Double peso;
 	private String vidaUtil;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date lancamento;
 	private String operador;
 
