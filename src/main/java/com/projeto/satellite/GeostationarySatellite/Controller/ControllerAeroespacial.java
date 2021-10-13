@@ -30,4 +30,10 @@ public class ControllerAeroespacial {
 	public ResponseEntity<AeroespacialDTO> listAero(@PathVariable Long id) {
 		return aeroespacial.listAreoespacial(id);
 	}
+	
+	@GetMapping("operador/{operador}")
+	public ResponseEntity<AeroespacialDTO> listOperador(@PathVariable String operador) {
+		return aeroespacial.findByOperador(operador);
+		
+	}
 }
