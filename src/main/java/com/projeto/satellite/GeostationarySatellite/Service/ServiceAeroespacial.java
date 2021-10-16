@@ -46,12 +46,27 @@ public class ServiceAeroespacial {
 	public ResponseEntity<AeroespacialDTO> findByOperador(String operador) {
 		Optional<Aeroespacial> listDataOperador = aereoRepository
 				.findByoperadorIgnoreCaseContaining(operador);
-		
 		if(listDataOperador.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listDataOperador.get(), AeroespacialDTO.class));
 		} else {
 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O %s não encontrado cadastrado no banco de dados", operador));
 		}
-				
 	}
+		
+	public ResponseEntity<AeroespacialDTO> updateAeroespacial(Long id, AeroespacialDTO aeroespacialDTO) {
+		Optional<Aeroespacial> listId = aereoRepository.findById(id);
+		if(listId.isPresent()) {
+			Aeroespacial aero = listId.get();
+ 			aero.setPeso(aeroespacialDTO.getPeso());
+			aero.setVidaUtil(aeroespacialDTO.getVidaUtil());
+			aero.setLancamento(aeroespacialDTO.getLancamento());
+			aero.setOperador(aeroespacialDTO.getOperador());
+			aereoRepository.save(aero);
+			return ResponseEntity.ok(modelMapper.map(aero, AeroespacialDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("falha ao atualizar informações de tipos de informação espacial"));
+		}
+ 	}
+				
+	
 }
