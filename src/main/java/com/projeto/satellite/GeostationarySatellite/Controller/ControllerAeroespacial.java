@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,10 @@ public class ControllerAeroespacial {
 	@GetMapping("operador/{operador}")
 	public ResponseEntity<AeroespacialDTO> listOperador(@PathVariable String operador) {
 		return aeroespacial.findByOperador(operador);
-		
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<AeroespacialDTO> updateAeroData(@PathVariable Long id, @RequestBody AeroespacialDTO aeroespacialDTO ) {
+		return aeroespacial.updateAeroespacial(id, aeroespacialDTO);
 	}
 }
