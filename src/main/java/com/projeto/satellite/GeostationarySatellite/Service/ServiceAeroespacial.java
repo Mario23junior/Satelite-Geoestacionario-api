@@ -67,6 +67,34 @@ public class ServiceAeroespacial {
 			throw new ReturnMessageWhenNoSavedIdFound(String.format("falha ao atualizar informações de tipos de informação espacial"));
 		}
  	}
-				
 	
+	public ResponseEntity<AeroespacialDTO> deleteAeroespacial(Long id) {
+		Optional<Aeroespacial> findId = aereoRepository.findById(id);
+		if(findId.isPresent()) {
+			aereoRepository.delete(findId.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Não foi encontrada codigo de indenficação para esclusão"));
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
