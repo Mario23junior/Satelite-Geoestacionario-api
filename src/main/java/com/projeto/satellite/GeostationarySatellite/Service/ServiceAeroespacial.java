@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ReturnMessageWhenNoSavedIdFound;
+import com.projeto.satellite.GeostationarySatellite.Exceptions.ValidatingDuplicateValues;
 import com.projeto.satellite.GeostationarySatellite.Model.Aeroespacial;
 import com.projeto.satellite.GeostationarySatellite.ModelDTO.AeroespacialDTO;
 import com.projeto.satellite.GeostationarySatellite.Repository.AeroespacialRepositry;
@@ -23,6 +24,13 @@ public class ServiceAeroespacial {
 		this.aereoRepository = aereoRepository;
 	}
 	
+	public void ExceptionDuplicateDataAeroespacial(Aeroespacial aero) {
+		Optional<Aeroespacial> findOperador = aereoRepository.findByoperadorIgnoreCaseContaining(aero.getOperador());
+		if(findOperador != null && findOperador.get().getId() != aero.getId()) {
+			throw new ValidatingDuplicateValues(String.format("Informação já cadastrada no banco de dados."));
+		}
+	}
+	
 	public ResponseEntity<AeroespacialDTO> saveAeroespacial(AeroespacialDTO areoDto) {
 		Aeroespacial saveDataId = saveBody(modelMapper.map(areoDto, Aeroespacial.class));
 		return ResponseEntity
@@ -31,6 +39,7 @@ public class ServiceAeroespacial {
 	}
 	
 	public Aeroespacial saveBody(Aeroespacial aeroespacial) {
+		ExceptionDuplicateDataAeroespacial(aeroespacial);
 		return aereoRepository.save(aeroespacial);
 	}
 	
@@ -42,6 +51,7 @@ public class ServiceAeroespacial {
             throw new ReturnMessageWhenNoSavedIdFound(String.format("Informação não encontrada"));
 		}
 	}
+	
 	
 	public ResponseEntity<AeroespacialDTO> findByOperador(String operador) {
 		Optional<Aeroespacial> listDataOperador = aereoRepository
@@ -57,6 +67,7 @@ public class ServiceAeroespacial {
 		Optional<Aeroespacial> listId = aereoRepository.findById(id);
 		if(listId.isPresent()) {
 			Aeroespacial aero = listId.get();
+			ExceptionDuplicateDataAeroespacial(aero);
  			aero.setPeso(aeroespacialDTO.getPeso());
 			aero.setVidaUtil(aeroespacialDTO.getVidaUtil());
 			aero.setLancamento(aeroespacialDTO.getLancamento());
