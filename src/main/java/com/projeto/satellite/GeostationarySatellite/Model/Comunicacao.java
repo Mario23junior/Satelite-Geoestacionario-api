@@ -14,7 +14,7 @@ public class Comunicacao {
 	private String tipoBanda;
 	private Boolean ativo;
 	private Double periodoOrbital;
-	private Double AnomaliaMedia;
+	private Double anomaliaMedia;
 	
 	public Long getId() {
 		return id;
@@ -41,11 +41,13 @@ public class Comunicacao {
 		this.periodoOrbital = periodoOrbital;
 	}
 	public Double getAnomaliaMedia() {
-		return AnomaliaMedia;
+		return anomaliaMedia;
 	}
 	public void setAnomaliaMedia(Double anomaliaMedia) {
-		AnomaliaMedia = anomaliaMedia;
-	} 
+		this.anomaliaMedia = anomaliaMedia;
+	}
+	
+	
 	
 	
 	
