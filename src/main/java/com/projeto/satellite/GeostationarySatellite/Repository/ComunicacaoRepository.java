@@ -8,4 +8,6 @@ import com.projeto.satellite.GeostationarySatellite.Model.Comunicacao;
 @Repository
 public interface ComunicacaoRepository extends JpaRepository<Comunicacao, Long>{
 
+	Comunicacao findByTipoBandaIgnoreCaseContaining(String tipoBanda);
+
 }
