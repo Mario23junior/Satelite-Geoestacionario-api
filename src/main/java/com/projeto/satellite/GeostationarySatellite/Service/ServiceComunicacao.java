@@ -1,10 +1,13 @@
 package com.projeto.satellite.GeostationarySatellite.Service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.projeto.satellite.GeostationarySatellite.Exceptions.ReturnMessageWhenNoSavedIdFound;
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ValidatingDuplicateValues;
 import com.projeto.satellite.GeostationarySatellite.Model.Comunicacao;
 import com.projeto.satellite.GeostationarySatellite.ModelDTO.ComunicacaoDTO;
@@ -41,4 +44,14 @@ public class ServiceComunicacao {
 					,comunicacao.getTipoBanda()));
 		}
 	}
+	
+	public ResponseEntity<ComunicacaoDTO> findSatellitesActivities(boolean ativo) {
+ 		Optional<Comunicacao> listSatelite = comuniRepository.findByAtivo(ativo);
+		if(listSatelite.isPresent()) {
+			return ResponseEntity.ok(modelMapper.map(listSatelite.get(), ComunicacaoDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Nenhum satelite encontrato com esta informação"));
+		}
+	}
+	
 }
