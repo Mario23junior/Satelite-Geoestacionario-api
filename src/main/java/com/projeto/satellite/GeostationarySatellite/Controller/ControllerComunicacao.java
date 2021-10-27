@@ -30,4 +30,9 @@ public class ControllerComunicacao {
 	public ResponseEntity<ComunicacaoDTO> listSateliteActivo(@PathVariable boolean ativo) {
 		return serviceComuni.findSatellitesActivities(ativo);
 	}
+	
+	@GetMapping("{id}")
+	public ResponseEntity<ComunicacaoDTO> listId(@PathVariable Long id) {
+		return serviceComuni.findComunicacaoId(id);
+	}
 }
