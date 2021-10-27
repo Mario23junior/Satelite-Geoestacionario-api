@@ -54,4 +54,24 @@ public class ServiceComunicacao {
 		}
 	}
 	
+	public ResponseEntity<ComunicacaoDTO> findComunicacaoId(Long id) {
+		Optional<Comunicacao> findId = comuniRepository.findById(id);
+		if(findId.isPresent()) {
+			return ResponseEntity.ok(modelMapper.map(findId.get(), ComunicacaoDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("O indentificador "+ id +" não foi encontrado"));
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
