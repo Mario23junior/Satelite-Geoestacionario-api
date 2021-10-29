@@ -79,6 +79,16 @@ public class ServiceComunicacao {
 
     	}
     }
+    
+	public ResponseEntity<ComunicacaoDTO> deletarGeolocalizao(Long id) {
+		Optional<Comunicacao> findId = comuniRepository.findById(id);
+		if(findId.isPresent()) {
+			comuniRepository.delete(findId.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("Por favor este id %s não foi encontrado para ser excluido",id));
+		}
+	}
 	
 }
 
