@@ -63,6 +63,23 @@ public class ServiceComunicacao {
 		}
 	}
 	
+    public ResponseEntity<ComunicacaoDTO> updateComunicacao(Long id, Comunicacao comun) {
+    	Optional<Comunicacao> findComunicacaoId = comuniRepository.findById(id);
+    	if(findComunicacaoId.isPresent()) {
+    		Comunicacao com = findComunicacaoId.get();
+    		com.setTipoBanda(comun.getTipoBanda());
+    		com.setAtivo(comun.getAtivo());
+    		com.setPeriodoOrbital(comun.getPeriodoOrbital());
+    		com.setAnomaliaMedia(comun.getAnomaliaMedia());
+    		
+    		comuniRepository.save(com);
+    		return ResponseEntity.ok(modelMapper.map(com, ComunicacaoDTO.class));
+    	} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("não foi possivel atualizar o "+ id +" não foi encontrado"));
+
+    	}
+    }
+	
 }
 
 
