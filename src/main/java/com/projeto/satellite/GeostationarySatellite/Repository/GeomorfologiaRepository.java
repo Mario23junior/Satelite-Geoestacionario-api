@@ -7,5 +7,6 @@ import com.projeto.satellite.GeostationarySatellite.Model.Geomorfologia;
 
 @Repository
 public interface GeomorfologiaRepository extends JpaRepository<Geomorfologia, Long>{
-
+   
+	Geomorfologia findByAltitudeMinima(Double altitudeMinima);
 }
