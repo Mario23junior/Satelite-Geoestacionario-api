@@ -1,6 +1,7 @@
 package com.projeto.satellite.GeostationarySatellite.Controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.satellite.GeostationarySatellite.ModelDTO.GeolocalizacaoDTO;
 import com.projeto.satellite.GeostationarySatellite.ModelDTO.GeomorfologiaDTO;
 import com.projeto.satellite.GeostationarySatellite.Service.ServiceGeomorfologia;
 
@@ -35,6 +37,11 @@ public class ControllerGeomorfologia {
 	@PutMapping("{id}")
 	public ResponseEntity<GeomorfologiaDTO> updateGeomorfologia(@PathVariable Long id, @RequestBody GeomorfologiaDTO geoDto) {
 		return service.updateGemorfolos(id, geoDto);
+	}
+	
+	@DeleteMapping("{id}")
+	public ResponseEntity<GeolocalizacaoDTO> deleteGeomor(@PathVariable Long id) {
+		return service.deleteGeomor(id);
 	}
 	
 }

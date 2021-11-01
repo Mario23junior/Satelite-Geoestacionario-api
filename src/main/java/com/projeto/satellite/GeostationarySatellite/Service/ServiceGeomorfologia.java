@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ReturnMessageWhenNoSavedIdFound;
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ValidatingDuplicateValues;
 import com.projeto.satellite.GeostationarySatellite.Model.Geomorfologia;
+import com.projeto.satellite.GeostationarySatellite.ModelDTO.GeolocalizacaoDTO;
 import com.projeto.satellite.GeostationarySatellite.ModelDTO.GeomorfologiaDTO;
 import com.projeto.satellite.GeostationarySatellite.Repository.GeomorfologiaRepository;
 
@@ -50,7 +51,7 @@ public class ServiceGeomorfologia {
 		if(listId.isPresent()) {
 			return ResponseEntity.ok(mapper.map(listId.get(), GeomorfologiaDTO.class));
 		} else {
- 			throw new ReturnMessageWhenNoSavedIdFound(String.format("Este %s nã foi encontrado no banco de dados",id));
+ 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O id de indentificação %s não foi encontrado em nossa base de dados",id));
 		}
 	}
 	
@@ -67,9 +68,20 @@ public class ServiceGeomorfologia {
 			return ResponseEntity.ok(mapper.map(geo, GeomorfologiaDTO.class));
 		} else {
 			throw new ReturnMessageWhenNoSavedIdFound(String.format("O erro ao atualizar informações de geomorfologia"));
-		}
-		
+		}	
 	}
+	
+	
+	public ResponseEntity<GeolocalizacaoDTO> deleteGeomor(@PathVariable Long id) {
+		Optional<Geomorfologia> idScher = geomorRepository.findById(id);
+		if(idScher.isPresent()) {
+			geomorRepository.delete(idScher.get());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format(" O ID %s não foi emcontrado no banco de dados ",id)); 
+		}
+	}
+	
 } 
 
 
