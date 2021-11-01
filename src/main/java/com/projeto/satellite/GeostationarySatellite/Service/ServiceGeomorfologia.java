@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ReturnMessageWhenNoSavedIdFound;
 import com.projeto.satellite.GeostationarySatellite.Exceptions.ValidatingDuplicateValues;
@@ -51,6 +52,23 @@ public class ServiceGeomorfologia {
 		} else {
  			throw new ReturnMessageWhenNoSavedIdFound(String.format("Este %s nã foi encontrado no banco de dados",id));
 		}
+	}
+	
+	public ResponseEntity<GeomorfologiaDTO> updateGemorfolos(@PathVariable Long id, @RequestBody GeomorfologiaDTO geDto) {
+		ExceptionDuplicateGeomorfologia(mapper.map(geDto, Geomorfologia.class));
+		Optional<Geomorfologia> listId = geomorRepository.findById(id);
+		if(listId.isPresent()) {
+			Geomorfologia geo = listId.get();
+			geo.setAltitudeDePico(geDto.getAltitudeDePico());
+			geo.setAltitudeMedia(geDto.getAltitudeMedia());
+			geo.setAltitudeMinima(geDto.getAltitudeMinima());
+			
+			geomorRepository.save(geo);
+			return ResponseEntity.ok(mapper.map(geo, GeomorfologiaDTO.class));
+		} else {
+			throw new ReturnMessageWhenNoSavedIdFound(String.format("O erro ao atualizar informações de geomorfologia"));
+		}
+		
 	}
 } 
 
