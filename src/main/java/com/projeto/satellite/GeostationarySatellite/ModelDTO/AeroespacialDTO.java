@@ -2,7 +2,10 @@ package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
 import java.util.Date;
 
+import javax.persistence.ManyToOne;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
 
 public class AeroespacialDTO {
    
@@ -13,6 +16,9 @@ public class AeroespacialDTO {
 	private Date lancamento;
 	private String operador;
 
+	@ManyToOne
+	private Satelite satelite;
+	
 	public Double getPeso() {
 		return peso;
 	}
@@ -44,5 +50,15 @@ public class AeroespacialDTO {
 	public void setOperador(String operador) {
 		this.operador = operador;
 	}
+
+	public Satelite getSatelite() {
+		return satelite;
+	}
+
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
+	
+	
 
 }
