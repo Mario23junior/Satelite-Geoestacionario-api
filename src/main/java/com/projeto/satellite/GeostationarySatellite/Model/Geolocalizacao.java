@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Geolocalizacao {
@@ -15,6 +16,9 @@ public class Geolocalizacao {
 	private String posicaoEmOrbita;
 	private String localizacaoOrbital;
 	private String cobertura;
+	
+	@ManyToOne
+	private Satelite satelite;
 	
 	public Long getId() {
 		return id;
@@ -46,6 +50,13 @@ public class Geolocalizacao {
 	public void setCobertura(String cobertura) {
 		this.cobertura = cobertura;
 	}
+	public Satelite getSatelite() {
+		return satelite;
+	}
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
+	
 	
 	
 }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Comunicacao {
@@ -15,6 +16,9 @@ public class Comunicacao {
 	private Boolean ativo;
 	private Double periodoOrbital;
 	private Double anomaliaMedia;
+	
+	@ManyToOne
+	private Satelite satelite;
 	
 	public Long getId() {
 		return id;
@@ -45,6 +49,12 @@ public class Comunicacao {
 	}
 	public void setAnomaliaMedia(Double anomaliaMedia) {
 		this.anomaliaMedia = anomaliaMedia;
+	}
+	public Satelite getSatelite() {
+		return satelite;
+	}
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
 	}
 	
 	

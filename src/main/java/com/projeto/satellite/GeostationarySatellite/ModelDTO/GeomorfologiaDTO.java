@@ -1,10 +1,17 @@
 package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
+import javax.persistence.ManyToOne;
+
+import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
+
 public class GeomorfologiaDTO {
    
 	private Double altitudeMinima;
 	private Double altitudeMedia;
 	private Double altitudeDePico;
+	
+	@ManyToOne
+	private Satelite satelite;
 	
 	public Double getAltitudeMinima() {
 		return altitudeMinima;
@@ -24,4 +31,12 @@ public class GeomorfologiaDTO {
 	public void setAltitudeDePico(Double altitudeDePico) {
 		this.altitudeDePico = altitudeDePico;
 	}
+	public Satelite getSatelite() {
+		return satelite;
+	}
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
+	
+	
 }

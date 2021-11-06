@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,6 +23,9 @@ public class Aeroespacial {
 	private Date lancamento;
 	private String operador;
 
+	@ManyToOne
+	private Satelite satelite;
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,6 +65,16 @@ public class Aeroespacial {
 	public void setOperador(String operador) {
 		this.operador = operador;
 	}
+
+	public Satelite getSatelite() {
+		return satelite;
+	}
+
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
+	
+	
 }
 
 

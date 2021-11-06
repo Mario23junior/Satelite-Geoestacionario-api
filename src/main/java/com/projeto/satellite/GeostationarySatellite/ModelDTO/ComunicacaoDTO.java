@@ -1,11 +1,18 @@
 package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
+import javax.persistence.ManyToOne;
+
+import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
+
 public class ComunicacaoDTO {
 
 	private String tipoBanda;
 	private Boolean ativo;
 	private Double periodoOrbital;
 	private Double anomaliaMedia;
+	
+	@ManyToOne
+	private Satelite satelite;
 	
 	public String getTipoBanda() {
 		return tipoBanda;
@@ -31,7 +38,14 @@ public class ComunicacaoDTO {
 	public void setAnomaliaMedia(Double anomaliaMedia) {
 		this.anomaliaMedia = anomaliaMedia;
 	}
+	public Satelite getSatelite() {
+		return satelite;
+	}
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
 
+	
 	
 
 }

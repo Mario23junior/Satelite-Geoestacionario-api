@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Geomorfologia {
@@ -14,6 +15,9 @@ public class Geomorfologia {
 	private Double altitudeMinima;
 	private Double altitudeMedia;
 	private Double altitudeDePico;
+	
+	@ManyToOne
+	private Satelite satelite;
 	
 	public Long getId() {
 		return id;
@@ -39,6 +43,14 @@ public class Geomorfologia {
 	public void setAltitudeDePico(Double altitudeDePico) {
 		this.altitudeDePico = altitudeDePico;
 	}
+	public Satelite getSatelite() {
+		return satelite;
+	}
+	public void setSatelite(Satelite satelite) {
+		this.satelite = satelite;
+	}
+	
+	
 	
 	
 }
