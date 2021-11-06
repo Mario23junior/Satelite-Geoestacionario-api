@@ -2,8 +2,6 @@ package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
 import java.util.List;
 
-import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class SateliteDTO {
@@ -14,20 +12,16 @@ public class SateliteDTO {
 	private String veiculo;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
-	@OneToMany(mappedBy = "satelite")
-	private List<AeroespacialDTO> aeroespacialDto;
+ 	private List<AeroespacialDTO> aeroespacialDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
-	@OneToMany(mappedBy = "satelite")
-	private List<ComunicacaoDTO> comunicacaoDto;
+ 	private List<ComunicacaoDTO> comunicacaoDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
-	@OneToMany(mappedBy = "satelite")
-	private List<GeolocalizacaoDTO> geolocalizacaosDto;
+ 	private List<GeolocalizacaoDTO> geolocalizacaosDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
-	@OneToMany(mappedBy = "satelite")
-	private List<GeomorfologiaDTO> geomorfologiasDto;
+ 	private List<GeomorfologiaDTO> geomorfologiasDto;
  
 	public SateliteDTO() {
 		// TODO Auto-generated constructor stub
