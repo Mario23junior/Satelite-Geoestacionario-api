@@ -10,6 +10,9 @@ import com.projeto.satellite.GeostationarySatellite.Model.Aeroespacial;
 @Repository
 public interface AeroespacialRepositry extends JpaRepository<Aeroespacial, Long>{
 
-	Optional<Aeroespacial> findByoperadorIgnoreCaseContaining(String operador);
+	Aeroespacial findByOperadorIgnoreCaseContaining(String operador);
+	Optional<Aeroespacial> findByVidaUtilIgnoreCaseContaining(String vidaUtil);
+
+
 
 }
