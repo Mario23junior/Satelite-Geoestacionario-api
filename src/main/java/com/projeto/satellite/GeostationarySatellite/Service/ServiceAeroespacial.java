@@ -24,23 +24,25 @@ public class ServiceAeroespacial {
 		this.aereoRepository = aereoRepository;
 	}
 	
-	public void ExceptionDuplicateDataAeroespacial(Aeroespacial aero) {
-		Optional<Aeroespacial> findOperador = aereoRepository.findByoperadorIgnoreCaseContaining(aero.getOperador());
-		if(findOperador != null && findOperador.get().getId() != aero.getId()) {
-			throw new ValidatingDuplicateValues(String.format("Informação já cadastrada no banco de dados."));
-		}
-	}
-	
+
 	public ResponseEntity<AeroespacialDTO> saveAeroespacial(AeroespacialDTO areoDto) {
 		Aeroespacial saveDataId = saveBody(modelMapper.map(areoDto, Aeroespacial.class));
 		return ResponseEntity
-				.status(HttpStatus.OK)
+				.status(HttpStatus.CREATED)
 				.body(modelMapper.map(saveDataId, AeroespacialDTO.class));
 	}
 	
 	public Aeroespacial saveBody(Aeroespacial aeroespacial) {
 		ExceptionDuplicateDataAeroespacial(aeroespacial);
 		return aereoRepository.save(aeroespacial);
+	}
+	
+	
+	public void ExceptionDuplicateDataAeroespacial(Aeroespacial aero) {
+	Aeroespacial findOperador = aereoRepository.findByOperadorIgnoreCaseContaining(aero.getOperador());
+		if(findOperador != null && findOperador.getId() != aero.getId()) {
+			throw new ValidatingDuplicateValues(String.format("Informação já cadastrada no banco de dados."));
+		}
 	}
 	
 	public ResponseEntity<AeroespacialDTO> listAreoespacial(Long id) {
@@ -55,7 +57,7 @@ public class ServiceAeroespacial {
 	
 	public ResponseEntity<AeroespacialDTO> findByOperador(String operador) {
 		Optional<Aeroespacial> listDataOperador = aereoRepository
-				.findByoperadorIgnoreCaseContaining(operador);
+				.findByVidaUtilIgnoreCaseContaining(operador);
 		if(listDataOperador.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(listDataOperador.get(), AeroespacialDTO.class));
 		} else {
@@ -89,23 +91,5 @@ public class ServiceAeroespacial {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
