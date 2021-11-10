@@ -33,11 +33,11 @@ public class ControllerAeroespacial {
 		return aeroespacial.listAreoespacial(id);
 	}
 	
-//	@GetMapping("operador/{operador}")
-//	public ResponseEntity<AeroespacialDTO> listOperador(@PathVariable String operador) {
-//		return aeroespacial.findByOperador(operador);
-//	}
-//	
+	@GetMapping("operador/{operador}")
+	public ResponseEntity<AeroespacialDTO> listOperador(@PathVariable String operador) {
+		return aeroespacial.findByOperador(operador);
+	}
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<AeroespacialDTO> updateAeroData(@PathVariable Long id, @RequestBody AeroespacialDTO aeroespacialDTO ) {
 		return aeroespacial.updateAeroespacial(id, aeroespacialDTO);

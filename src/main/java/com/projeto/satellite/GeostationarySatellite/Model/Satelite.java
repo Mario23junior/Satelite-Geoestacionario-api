@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 public class Satelite {
     
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nomeDeDiretriz;
 	private String nomeComun;
@@ -31,6 +31,10 @@ public class Satelite {
 	@OneToMany(mappedBy = "satelite")
 	private List<Geomorfologia> geomorfologias;
 
+	public Satelite() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -102,6 +106,6 @@ public class Satelite {
 	public void setGeomorfologias(List<Geomorfologia> geomorfologias) {
 		this.geomorfologias = geomorfologias;
 	}
-	
+
 	
 }

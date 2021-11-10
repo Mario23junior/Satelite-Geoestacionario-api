@@ -1,9 +1,5 @@
 package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
-import javax.persistence.ManyToOne;
-
-import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
-
 public class GeolocalizacaoDTO {
    
 	private String orbita;
@@ -11,9 +7,7 @@ public class GeolocalizacaoDTO {
 	private String localizacaoOrbital;
 	private String cobertura;
 	
-	@ManyToOne
-	private Satelite satelite;
-	
+ 	
 	public String getOrbita() {
 		return orbita;
 	}
@@ -37,13 +31,5 @@ public class GeolocalizacaoDTO {
 	}
 	public void setCobertura(String cobertura) {
 		this.cobertura = cobertura;
-	}
-	public Satelite getSatelite() {
-		return satelite;
-	}
-	public void setSatelite(Satelite satelite) {
-		this.satelite = satelite;
-	}
-	
-	
+	}	
 }

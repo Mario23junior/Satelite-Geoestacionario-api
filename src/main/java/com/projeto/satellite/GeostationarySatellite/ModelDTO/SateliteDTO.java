@@ -12,21 +12,17 @@ public class SateliteDTO {
 	private String veiculo;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
- 	private List<AeroespacialDTO> aeroespacialDto;
+  	private List<AeroespacialDTO> aeroespacialDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
- 	private List<ComunicacaoDTO> comunicacaoDto;
+  	private List<ComunicacaoDTO> comunicacaoDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
- 	private List<GeolocalizacaoDTO> geolocalizacaosDto;
+  	private List<GeolocalizacaoDTO> geolocalizacaosDto;
 	
 	@JsonInclude(JsonInclude.Include.NON_NULL)
- 	private List<GeomorfologiaDTO> geomorfologiasDto;
+  	private List<GeomorfologiaDTO> geomorfologiasDto;
  
-	public SateliteDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getNomeDeDiretriz() {
 		return nomeDeDiretriz;
 	}
@@ -90,5 +86,9 @@ public class SateliteDTO {
 	public void setGeomorfologiasDto(List<GeomorfologiaDTO> geomorfologiasDto) {
 		this.geomorfologiasDto = geomorfologiasDto;
 	}
+	
+	
+
+
 	
 }

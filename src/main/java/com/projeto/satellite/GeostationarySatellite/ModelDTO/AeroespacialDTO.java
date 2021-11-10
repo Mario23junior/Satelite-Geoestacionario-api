@@ -2,8 +2,6 @@ package com.projeto.satellite.GeostationarySatellite.ModelDTO;
 
 import java.util.Date;
 
-import javax.persistence.ManyToOne;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.satellite.GeostationarySatellite.Model.Satelite;
 
@@ -15,8 +13,8 @@ public class AeroespacialDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date lancamento;
 	private String operador;
-
-	@ManyToOne
+	
+	
 	private Satelite satelite;
 	
 	public Double getPeso() {
@@ -57,8 +55,7 @@ public class AeroespacialDTO {
 
 	public void setSatelite(Satelite satelite) {
 		this.satelite = satelite;
-	}
+	}	
 	
 	
-
 }

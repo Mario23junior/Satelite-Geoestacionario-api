@@ -21,6 +21,6 @@ public class ControllerRetourDto {
 	
 	@GetMapping
 	public List<SateliteDTO> listAll() {
-		return serviceListDataEntity.ListAllDataValue();
+		return serviceListDataEntity.ListAllDataDTO();
 	}	
 }

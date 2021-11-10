@@ -17,29 +17,29 @@ public class ServiceListDataEntity {
 	private ModelMapper mapper;
 	
 	public ServiceListDataEntity(SateliteRepository sateliteRepository, ModelMapper mapper) {
-		super();
 		this.sateliteRepository = sateliteRepository;
 		this.mapper = mapper;
 	}
 	
-	public List<SateliteDTO> ListAll() {
-		return ((List<Satelite>) sateliteRepository
-				       .findAll())
-				       .stream()
-				       .map(this::ConvertEntidade)
-				       .collect(Collectors.toList());
+	public List<SateliteDTO> listAllInformationData() {
+	    return ((List<Satelite>) sateliteRepository
+	    		.findAll())
+	    		.stream()
+	    		.map(this::ConvertEntityAllDTO)
+                .collect(Collectors.toList());
+
 	}
 	
-	private SateliteDTO ConvertEntidade(Satelite satelite) {
-		SateliteDTO converter = mapper.map(satelite, SateliteDTO.class);
-		return converter;
+	private SateliteDTO ConvertEntityAllDTO(Satelite satelite) {
+		SateliteDTO vulcaoDataConvert = mapper.map(satelite, SateliteDTO.class);
+ 		return vulcaoDataConvert;
 	}
 	
-	public List<SateliteDTO> ListAllDataValue() {
-		List<SateliteDTO> list = ListAll();
+	public List<SateliteDTO> ListAllDataDTO() {
+		List<SateliteDTO> list = listAllInformationData();
 		return list
-			   .stream()
-			   .collect(Collectors.toList());
+				.stream()
+				.collect(Collectors.toList());
 	}
 	
 	
