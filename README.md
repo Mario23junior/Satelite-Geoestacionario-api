@@ -19,12 +19,12 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 baixe o projeto e descompacte a pasta e cesse a pasta descompactada
 
 Baixe as dependências do projeto 
-```
+```java
 mvn clean install
 ```
 Em seguida execute a aplicação
 
-```
+```java
 mvn spring-boot:run
 ```
 
